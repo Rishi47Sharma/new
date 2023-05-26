@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>User Data</title>
+</head>
+<body>
+  <h1>User Data</h1>
+  <ul id="dataList"></ul>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Retrieve the user data from local storage
+      var storedData = JSON.parse(localStorage.getItem('userData')) || [];
+
+      if (storedData.length > 0) {
+        var dataList = document.getElementById('dataList');
+
+        storedData.forEach(function(user) {
+          var listItem = document.createElement('li');
+          listItem.textContent = `Name: ${user.name}, Email: ${user.email}, Password: ${user.password}`;
+          dataList.appendChild(listItem);
+        });
+      } else {
+        var noDataMsg = document.createElement('p');
+        noDataMsg.textContent = 'No user data available.';
+        document.body.appendChild(noDataMsg);
+      }
+    });
+  </script>
+</body>
+</html>
